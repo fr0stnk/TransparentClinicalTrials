@@ -8,7 +8,7 @@ There are three ways to deploy an app exclusively.
 
 ### Netlify project
 
-This one is a build made to be hosted by Netlify. It is full-fledged application. You only have to give an access to it in [Netlify][https://app.netlify.com/] interface.
+This one is a build made to be hosted by Netlify. It is full-fledged application. You only have to give an access to it in [Netlify](https://app.netlify.com/) interface.
 
 - Open Netlify
 - Create new account (log in with GitHub profile)
