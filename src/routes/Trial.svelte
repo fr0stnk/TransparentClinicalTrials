@@ -40,6 +40,7 @@
 		flex-wrap: nowrap;
 		justify-content: space-between;
 		border-radius: 10px;
+		
 		margin: 15px;
 		padding: 15px;
 		max-width: 1440px;

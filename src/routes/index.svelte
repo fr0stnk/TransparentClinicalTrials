@@ -12,6 +12,9 @@
 
 <script>
 
+	import SearchBar from "./SearchBar.svelte"
+	import SearchResults from "./SearchResults.svelte"
+
 //searchProps is data that is passed from dispatched props of SearchBar and reassigned as soon as searchTermPassed
 
 	export let searchProps;
@@ -24,8 +27,6 @@
 		searchProps: searchProps,
 		DB: DB,
 	}
-	import SearchBar from "./SearchBar.svelte"
-	import SearchResults from "./SearchResults.svelte"
 
 	function reassignSearchProps (e) {
 		spreadedProps.searchProps = e.detail.passedSearchTerm;
@@ -43,16 +44,14 @@
 <SearchResults {...spreadedProps}/>
 
 <style lang="scss">
+
+@use 'base';
+
 	main {
-		display: flex;
-		flex-flow: column;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		transition: 0.4s
+		@include base.flex($flow: column);
+		transition: 0.4s;
 	}
 	h1 {
-		font-family: sans-serif;
 		max-width: 80%;
 		text-align: center;
 	}

@@ -1,0 +1,47 @@
+//mixins
+
+@mixin flex ($flow: row, $wrap: wrap, $justify: center) {
+	display: flex;
+	justify-content: $justify;
+	align-items: center;
+	flex-flow: $flow;
+	flex-wrap: $wrap;
+}
+
+@mixin fonts ($family: sans-serif, $size: auto, $weight: auto) {
+	font-family: $family;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+@mixin reset {
+	border: none;
+	outline: none; 
+	background: none;
+	color: none;
+	text-decoration: none;
+	list-style-type: none;
+}
+
+@mixin sizes ($w: auto, $h: auto, $m: auto, $p: auto) {
+	height: $h;
+	width: $w;
+	margin: $m;
+	padding: $p;
+}
+
+//resolutions
+
+$tablet: 840px;
+$phone: 550px;
+
+//colors
+
+$blue: #24b2ff;
+$activatedBlue: #5cc6ff;
+$white: #ffffff;
+$darkWhite: #fcfcfc;
+$lightGrey: #ebebeb;
+
+
+

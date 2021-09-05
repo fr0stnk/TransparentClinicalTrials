@@ -1,30 +1,66 @@
-
-
 <script>
 
 	import { fly } from 'svelte/transition'
 	import { createEventDispatcher } from 'svelte'
-	const dispatch = createEventDispatcher()
 
 	export let searchTips;
 	export let searchTerm = "";
 	export let searchButton = "Text";
 	export let searchButtonClicked = false;
-	export let chosendElement = -1;
+	export let chosenElement = -1;
+
+	const dispatch = createEventDispatcher()
 
 	$ :visibleSearchTips = searchTips.filter((tip) => {
 		return tip.toLowerCase().includes(searchTerm.toLowerCase());
 	})
 
-	$ :console.log(visibleSearchTips[0])
-
 	function chooseSearchTip (e) {
 		searchTerm = e.target.innerHTML;
 		searchButtonClicked = true;
 	}
+	function defocusAndDeclick () {
+		document.querySelectorAll(".focused").forEach(item => item.classList.toggle("focused"));
+		searchButtonClicked = false;
+	}
+	function chooseSearchTipWithKeys (e) {
+		if (e.keyCode == 38) {
+			e.preventDefault()
+			chosenElement -= 1;
+			if (chosenElement < 0) {
+				chosenElement = -1;
+				document.querySelectorAll("#tipsButton")[0].classList.toggle("focused");
+				return;
+			} else {
+			document.querySelectorAll("#tipsButton")[chosenElement+1].classList.toggle("focused");
+			document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+			}
+		}
+		if (e.keyCode == 40) {
+			e.preventDefault()
+			chosenElement += 1;
+			if (chosenElement == visibleSearchTips.length) {
+				chosenElement = 0;
+				document.querySelectorAll("#tipsButton")[visibleSearchTips.length-1].classList.toggle("focused");
+				document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+			} else if (chosenElement == 0) {
+				document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+			} else {
+			document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
+			document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+			}
+		}
+	}
 	function onKeyPress (e) {
 		if (e.charCode == 13) {
-			passSearchTerm()
+			e.preventDefault();
+			chosenElement = -1;
+			if (!searchButtonClicked) {
+				searchTerm = document.querySelector(".focused").innerHTML;
+				searchButtonClicked = true;
+			} else {
+				passSearchTerm();
+			}
 		}
 	}
 	function passSearchTerm () {
@@ -33,27 +69,13 @@
 			"passedSearchTerm": searchTerm,
 		})
 	}
-	function chooseNextSearchTip (e) {
-		if (e.keyCode == 40) {
-			e.preventDefault()
-			chosendElement += 1;
-			searchTerm = visibleSearchTips[chosendElement];
-		}
-	}
-	function choosePreviousSearchTip (e) {
-		if (e.keyCode == 38) {
-			e.preventDefault()
-			chosendElement -= 1;
-			searchTerm = visibleSearchTips[chosendElement];
-		}
-	}
 
 </script>
 
 <main>
 	
 	<div class="searchBar">
-	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" id="searchForName" type="text" bind:value={searchTerm} on:keydown={chooseNextSearchTip} on:keydown={choosePreviousSearchTip} on:keypress={onKeyPress} on:input={() => {searchButtonClicked = false} }>
+	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" id="searchForName" type="text" bind:value={searchTerm} on:keydown={chooseSearchTipWithKeys} on:keypress={onKeyPress} on:input={defocusAndDeclick}>
 	<button class="searchButton" on:click={passSearchTerm}>Искать</button>
 	</div>
 
@@ -61,7 +83,7 @@
 		<div transition:fly={{ y: 20, duration: 125 }} class="visibleSearchTipsContainer">
 		{#each visibleSearchTips as tips}
 			<div class="visibleSearchTips">
-				<button bind:this={searchButton} on:click={chooseSearchTip}>{tips}</button>
+				<button id="tipsButton" class="focused" bind:this={searchButton} on:click={chooseSearchTip}>{tips}</button>
 			</div>
 		{:else}
 			<p>Ничего не нашлось. Измените запрос</p>
@@ -72,81 +94,69 @@
 </main>
 
 <style lang="scss">
+
+@use 'base';
+
 	p {
-		border: none;
+		@include base.reset;
+		@include base.sizes($m: 4px, $p: 4px);
 		border-radius: 4px;
-		background: none;
-		color: none;
-		outline: none;
 		max-width: 280px;
-		margin: 4px;
-		padding: 4px;
 	}
 	main {
-		display: flex;
-		flex-flow: column;
-		align-items: center;
+		@include base.flex($flow: column, $justify: flex-start);
 		max-height: 500px;
 		font-family: sans-serif;
 	}
 	.searchBar {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		@media(max-width: 600px) {
+		@include base.flex;
+		@media(max-width: base.$phone) {
 			flex-direction: column;
 		}
 	}
 	.visibleSearchTipsContainer {
+		@include base.flex;
 		position: absolute;
-		display: flex;
-		flex-flow: column;
-		align-items: center;
 		margin-top: 50px;
 		width: 380px;
-		background-color: white;
+		background: base.$white;
 		box-shadow: rgba(100, 100, 110, 0.08) 0px 2px 29px 0px;
 		border-radius: 12px;
-	}
-	.visibleSearchTips button {
-		border: none;
-		border-radius: 4px;
-		background: none;
-		color: none;
-		outline: none;
-		min-width: 340px;
-		margin: 4px;
-		padding: 8px;
-		text-align: left;
-	}
-	.visibleSearchTips button:hover {
-		background-color: #fcfcfc;
-		cursor: pointer;
-	}
-	.searchButton {
-		border: none;
-		border-radius: 4px;
-		background: #24b2ff;
-		color: white;
-		outline: none;
-		height: 40px;
-		margin: 4px;
-		padding: 4px;
-		cursor: pointer;
-		min-width: 40px;
-		@media (max-width: 500px) {
-			min-width: 100%;
+		& button {
+			@include base.reset;
+			@include base.sizes($m: 4px, $p: 8px);
+			border-radius: 4px;
+			min-width: 340px;
+			text-align: left;
+			&:hover {
+				background-color: base.$darkWhite;
+				cursor: pointer;
+			}
 		}
 	}
-	.searchButton:hover {
-		background: #5cc6ff;
+	.searchButton {
+		@include base.reset;
+		@include base.sizes($h: 40px, $m: 4px, $p: 4px);
+		background: base.$blue;
+		color: base.$white;
+		cursor: pointer;
+		min-width: 40px;
+		border-radius: 4px;
+		@media (max-width: base.$phone) {
+			min-width: 100%;
+		}
+		&:hover {
+			background: base.$activatedBlue;
+		}
 	}
 	input {
-		outline: none;
-		border: 1px #ebebeb solid;
+		@include base.reset;
+		@include base.sizes($w: 320px, $h: 30px, $p: 4px);
+		@include base.fonts($size: 16px);
+		border: 2px base.$lightGrey solid;
 		border-radius: 4px;
-		padding: 4px;
-		width: 320px;
-		height: 30px;
+	}
+	.focused {
+		background: base.$darkWhite !important;
 	}
 </style>

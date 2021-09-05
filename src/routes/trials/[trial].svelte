@@ -53,68 +53,51 @@
 </main>
 
 <style lang="scss">
+
+@use '../base';
+
 	main {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@include base.flex;
 		min-height: 90vh;
 	}
 	.listsContainer {
 		display: flex;
 		max-width: 1440px;
-		@media (max-width: 840px) {
+		@media (max-width: base.$tablet) {
 			flex-wrap: wrap;
 			justify-content: center;
 		}
 	}
 	.listOfOrganisations {
-		display: flex;
-		flex-flow: column;
-		justify-content: center;
-		align-items: center;
+		@include base.flex($flow: column);
 		text-align: center;
 	}
 	.organisation {
-		background: #24b2ff;
-		color: white;
-		margin: 10px;
+		@include base.sizes($m: 10px, $p: 12px);
+		background: base.$blue;
+		color: base.$white;
 		border-radius: 4px;
-		padding: 12px;
 		@media (max-width: 840px) {
 			min-width: 65%;
 		}
 	}
-	.listOfProperties {
-
-	}
 	.valueOfListItem {
-		background:  #fcfcfc;
+		@include base.sizes($m: 0px 20px, $p: 8px);
+		@include base.fonts($weight: 200);
+		background:  base.$darkWhite;
 		border-radius: 4px;
-		margin: 0px 20px;
-		padding: 8px;
 		flex-basis: 34%;
 		text-align: center;
-		font-weight: 200;
 	}
 	img {
-		height: 50px;
-		width: 50px;
+		@include base.sizes($w: 50px, $h: 50px);
 		border-radius: 40px;
 	}
-	div {
-		font-family: sans-serif;
-		font-size: 14px;
-	}
-	ul {
-
-	}
 	li {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		@include base.flex($justify: space-between);
 		margin: 12px 12px 12px 0px;
 		list-style-type: none;
-		@media (max-width: 500px) {
+		@media (max-width: base.$phone) {
 			flex-flow: column;
 		}
 	}
@@ -123,9 +106,9 @@
 		color: white;
 		padding: 6px;
 		border-radius: 4px;
-	}
-	a:hover {
-		background: #5cc6ff;
+		&:hover {
+			background: base.$activatedBlue;
+		}
 	}
 </style>
 

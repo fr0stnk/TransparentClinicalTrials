@@ -34,48 +34,43 @@
 </main>
 
 <style lang="scss">
+
+@use 'base';
+
 	main {
 		display: flex;
 		justify-content: center;
 	}
 	.tableContainer {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		max-width: 1440px;
 	}
 	.trial {
 		flex-grow: 2;
+		max-width: 1460px;
 	}
 	.name {
 		max-width: 200px;
 		min-width: 200px;
 	}
 	.tableTips {
-		font-family: sans-serif;
-		font-size: 12px;
-		font-weight: 800;
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: space-between;
+		@include base.fonts($family: sans-serif, $size: 12px, $weight: 800);
+		@include base.flex($wrap: nowrap, $justify: space-between);
 		border-radius: 10px;
 		margin: 15px;
 		flex-grow: 2;
-		@media (max-width: 840px) {
+		@media (max-width: base.$tablet) {
 			display: none;
 		}
 	}
 	p {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		flex-wrap: wrap;
+		@include base.flex($flow: column);
 		flex-grow: 2;
 		padding: 4px 20px;
-		border-radius: 6px;
 		margin: 4px;
 		max-width: 90px;
-		text-align: center;
+		border-radius: 6px;
 	}
 </style>
