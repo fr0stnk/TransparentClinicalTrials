@@ -44,3 +44,5 @@ Than you have to use command `npm run build` to create a new build of an applica
 ### Docker project
 
 There would be instruction how to deploy the app via Docker
+
+Hosted on: https://agitated-swartz-b8f353.netlify.app/
