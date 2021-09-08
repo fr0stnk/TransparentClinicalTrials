@@ -54,7 +54,7 @@
 
 <style lang="scss">
 
-@use '../base';
+@use '../../base';
 
 	main {
 		@include base.flex;
@@ -74,7 +74,7 @@
 	}
 	.organisation {
 		@include base.sizes($m: 10px, $p: 12px);
-		background: base.$blue;
+		background: base.$button;
 		color: base.$white;
 		border-radius: 4px;
 		@media (max-width: 840px) {
@@ -98,6 +98,7 @@
 		margin: 12px 12px 12px 0px;
 		list-style-type: none;
 		@media (max-width: base.$phone) {
+			margin-right: 34px;
 			flex-flow: column;
 		}
 	}
@@ -107,7 +108,7 @@
 		padding: 6px;
 		border-radius: 4px;
 		&:hover {
-			background: base.$activatedBlue;
+			background: base.$activatedButton;
 		}
 	}
 </style>

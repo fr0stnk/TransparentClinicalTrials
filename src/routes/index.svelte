@@ -1,58 +1,50 @@
-<script context="module">
-	export const load = async({ fetch }) => {
-		const resDB = await fetch("https://demo-db-server-master.herokuapp.com/cancers");
-		const DB = await resDB.json();
-		return {
-			props: {
-				DB
-			}
-		}
-	}
-</script>
-
-<script>
-
-	import SearchBar from "./SearchBar.svelte"
-	import SearchResults from "./SearchResults.svelte"
-
-//searchProps is data that is passed from dispatched props of SearchBar and reassigned as soon as searchTermPassed
-
-	export let searchProps;
-	export let DB;
-	export let searchTips = [];
-
-	DB.forEach(item => {searchTips.push(item.condition)})
-	
-	export let spreadedProps = {
-		searchProps: searchProps,
-		DB: DB,
-	}
-
-	function reassignSearchProps (e) {
-		spreadedProps.searchProps = e.detail.passedSearchTerm;
-		document.querySelector("main").style.transform = "scale(0.75)";
-		document.querySelector("h1").style.display = "none";
-	}
-
-</script>
-
 <main>
-	<h1>Введите наименование диагноза или название протокола:</h1>
-	<SearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
+	<div class="roles">
+		<div class="role">
+			<a sveltekit:prefetch href="/search/searchPage"><div class="cube">👩🏻‍⚕️</div></a>
+			<p>Я доктор</p>
+		</div>
+		<div class="role">
+			<div class="cube not-available">🙋🏼‍♂️</div>
+			<p>Я пациент</p>
+		</div>
+		<div class="role">
+			<div class="cube not-available">🏨</div>
+			<p>Я фармкомпания</p>
+		</div>
+	</div>
 </main>
-
-<SearchResults {...spreadedProps}/>
 
 <style lang="scss">
 
 @use 'base';
 
 	main {
-		@include base.flex($flow: column);
-		transition: 0.4s;
+		@include base.flex;
+		min-height: 90vh;
+		
 	}
-	h1 {
-		max-width: 80%;
+	.roles {
+		@include base.flex;
+		width: 50%;
 		text-align: center;
 	}
+	.cube {
+		@include base.flex;
+		@include base.sizes($w: 120px, $h: 120px);
+		@include base.fonts($size: 40px);
+		background: base.$button;
+		border-radius: 8px;
+		&:hover {
+			background: base.$activatedButton;
+		}
+	}
+	.not-available {
+		filter: grayscale(100%);
+		cursor: unset;
+		&:hover {
+			background: base.$button;
+		}
+	}
+
 </style>

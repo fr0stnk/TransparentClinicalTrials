@@ -24,33 +24,33 @@
 		searchButtonClicked = false;
 	}
 	function chooseSearchTipWithKeys (e) {
-		if (e.keyCode == 38) {
-			e.preventDefault()
-			chosenElement -= 1;
-			if (chosenElement < 0) {
-				chosenElement = -1;
-				document.querySelectorAll("#tipsButton")[0].classList.toggle("focused");
-				return;
-			} else {
-			document.querySelectorAll("#tipsButton")[chosenElement+1].classList.toggle("focused");
-			document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-			}
-		}
-		if (e.keyCode == 40) {
-			e.preventDefault()
-			chosenElement += 1;
-			if (chosenElement == visibleSearchTips.length) {
-				chosenElement = 0;
-				document.querySelectorAll("#tipsButton")[visibleSearchTips.length-1].classList.toggle("focused");
-				document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-			} else if (chosenElement == 0) {
-				document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-			} else {
-			document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
-			document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-			}
-		}
-	}
+    if (e.keyCode == 38) {
+        e.preventDefault()
+        chosenElement -= 1;
+        if (chosenElement < 0) {
+            chosenElement = -1;
+            document.querySelectorAll("#tipsButton")[0].classList.toggle("focused");
+            return;
+        } else {
+        document.querySelectorAll("#tipsButton")[chosenElement+1].classList.toggle("focused");
+        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+        }
+    }
+    if (e.keyCode == 40) {
+        e.preventDefault()
+        chosenElement += 1;
+        if (chosenElement == visibleSearchTips.length) {
+            chosenElement = 0;
+            document.querySelectorAll("#tipsButton")[visibleSearchTips.length-1].classList.toggle("focused");
+            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+        } else if (chosenElement == 0) {
+            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+        } else {
+        document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
+        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+        }
+    }
+}
 	function onKeyPress (e) {
 		if (e.charCode == 13) {
 			e.preventDefault();
@@ -75,7 +75,7 @@
 <main>
 	
 	<div class="searchBar">
-	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" id="searchForName" type="text" bind:value={searchTerm} on:keydown={chooseSearchTipWithKeys} on:keypress={onKeyPress} on:input={defocusAndDeclick}>
+	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" type="text" bind:value={searchTerm} on:keydown={chooseSearchTipWithKeys} on:keypress={onKeyPress} on:input={defocusAndDeclick}>
 	<button class="searchButton" on:click={passSearchTerm}>Искать</button>
 	</div>
 
@@ -95,7 +95,7 @@
 
 <style lang="scss">
 
-@use 'base';
+@use '../base';
 
 	p {
 		@include base.reset;
@@ -137,7 +137,7 @@
 	.searchButton {
 		@include base.reset;
 		@include base.sizes($h: 40px, $m: 4px, $p: 4px);
-		background: base.$blue;
+		background: base.$button;
 		color: base.$white;
 		cursor: pointer;
 		min-width: 40px;
@@ -146,14 +146,14 @@
 			min-width: 100%;
 		}
 		&:hover {
-			background: base.$activatedBlue;
+			background: base.$activatedButton;
 		}
 	}
 	input {
 		@include base.reset;
 		@include base.sizes($w: 320px, $h: 30px, $p: 4px);
 		@include base.fonts($size: 16px);
-		border: 2px base.$lightGrey solid;
+		border: 1px base.$lightGrey solid;
 		border-radius: 4px;
 	}
 	.focused {

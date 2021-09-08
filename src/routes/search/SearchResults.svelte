@@ -1,8 +1,8 @@
 <script>
 
 	import { fly, fade } from 'svelte/transition'
-
 	import Trial from "./Trial.svelte"
+	
 	export let searchProps = "-";
 	export let DB;
 	$ :databaseItems = DB.filter((item) => item.condition.toLowerCase().includes(searchProps.toLowerCase()))
@@ -35,7 +35,7 @@
 
 <style lang="scss">
 
-@use 'base';
+@use '../base';
 
 	main {
 		display: flex;
