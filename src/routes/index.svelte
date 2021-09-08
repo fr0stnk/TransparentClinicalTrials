@@ -25,9 +25,12 @@
 		
 	}
 	.roles {
-		@include base.flex;
+		@include base.flex ($justify: space-between);
 		width: 50%;
 		text-align: center;
+		@media (max-width: base.$phone) {
+			justify-content: center;
+		}
 	}
 	.cube {
 		@include base.flex;

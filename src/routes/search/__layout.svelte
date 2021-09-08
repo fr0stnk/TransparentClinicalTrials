@@ -1,7 +1,7 @@
 
 <div class="navbar">
-    <p><a href="/">На главную</a></p>
-    <p><a href="/search/searchPage">К поиску</a></p>
+    <p><a sveltekit:prefetch href="/">На главную</a></p>
+    <p><a sveltekit:prefetch href="/search/searchPage">К поиску</a></p>
 </div>
 <div class="style">
 	<slot />
@@ -15,20 +15,17 @@
 		font-family: sans-serif;
 	}
     .navbar {
-        @include base.flex($flow: row, $justify: center);
-        & p {
+        @include base.flex($flow: row, $justify: flex-start);
+        & p a {
             @include base.flex();
-            @include base.sizes($w: 200px, $h: 40px, $m: 6px);
-            background: base.$button;
-            border-radius: 4px;
-            color: base.$white;
+            @include base.sizes($w: 160px, $h: 40px, $m: 6px);
+            @include base.reset;
+            background: base.$darkWhite;
+            border-radius: 8px;
             cursor: pointer;
+            color: black;
             &:hover {
-                background: base.$activatedButton;
-            }
-            & a {
-                @include base.reset;
-                color: base.$white;
+                background: base.$lightGrey;
             }
         }
     }
