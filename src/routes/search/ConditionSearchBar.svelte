@@ -120,7 +120,7 @@
 	.visibleSearchTipsContainer {
 		@include base.flex;
 		position: absolute;
-		margin-top: 50px;
+		margin-top: 96px;
 		width: 380px;
 		background: base.$white;
 		box-shadow: rgba(100, 100, 110, 0.08) 0px 2px 29px 0px;
@@ -158,7 +158,7 @@
 	}
 	input {
 		@include base.reset;
-		@include base.sizes($w: 320px, $h: 30px, $p: 4px);
+		@include base.sizes($w: 320px, $h: 30px, $p: 4px, $m: 6px);
 		@include base.fonts($size: 16px);
 		border: 1px base.$lightGrey solid;
 		border-radius: 4px;
