@@ -75,6 +75,7 @@
 <main>
 	
 	<div class="searchBar">
+		<p class="searchDescription">Здесь укажите название протокола или диагноз:</p>
 	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" type="text" bind:value={searchTerm} on:keydown={chooseSearchTipWithKeys} on:keypress={onKeyPress} on:input={defocusAndDeclick}>
 	<button class="searchButton" on:click={passSearchTerm}>Искать</button>
 	</div>
@@ -107,9 +108,11 @@
 		@include base.flex($flow: column, $justify: flex-start);
 		max-height: 500px;
 		font-family: sans-serif;
+		padding: 4px 20px 20px 20px;
 	}
 	.searchBar {
-		@include base.flex;
+		@include base.flex($flow: column);
+		align-items: flex-start;
 		@media(max-width: base.$phone) {
 			flex-direction: column;
 		}
@@ -148,6 +151,10 @@
 		&:hover {
 			background: base.$activatedButton;
 		}
+	}
+	.searchDescription {
+		@include base.fonts($size: 12px, $weight: 600);
+		color: base.$button;
 	}
 	input {
 		@include base.reset;

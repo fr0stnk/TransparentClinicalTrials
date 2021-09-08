@@ -69,14 +69,14 @@
 		}
 	}
 	.listOfOrganisations {
-		@include base.flex($flow: column);
+		@include base.flex($flow: column, $justify: flex-start);
 		text-align: center;
 	}
 	.organisation {
 		@include base.sizes($m: 10px, $p: 12px);
 		background: base.$button;
 		color: base.$white;
-		border-radius: 4px;
+		border-radius: 12px;
 		@media (max-width: 840px) {
 			min-width: 65%;
 		}
@@ -85,7 +85,7 @@
 		@include base.sizes($m: 0px 20px, $p: 8px);
 		@include base.fonts($weight: 200);
 		background:  base.$darkWhite;
-		border-radius: 4px;
+		border-radius: 10px;
 		flex-basis: 34%;
 		text-align: center;
 	}
@@ -106,7 +106,7 @@
 		text-decoration: none;
 		color: white;
 		padding: 6px;
-		border-radius: 4px;
+		border-radius: 8px;
 		&:hover {
 			background: base.$activatedButton;
 		}

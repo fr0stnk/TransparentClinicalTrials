@@ -37,8 +37,10 @@
 </script>
 
 <main>
-	<h1>Введите наименование диагноза или название протокола:</h1>
+	<h1>Поиск РКИ</h1>
+	<div class="searchWindow">
 	<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
+	</div>
 </main>
 
 <SearchResults {...spreadedProps}/>
@@ -54,5 +56,14 @@
 	h1 {
 		max-width: 80%;
 		text-align: center;
+	}
+	p {
+		@include base.fonts($size: 12px);
+		color: base.$button;
+		margin: 8px;
+	}
+	.searchWindow {
+		border-radius: 16px;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	}
 </style>
