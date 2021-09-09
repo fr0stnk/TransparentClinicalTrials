@@ -5,7 +5,7 @@
 </script>
 
 <div class="trial">
-	<p class="name" ><a sveltekit:prefetch href={`./trials/${trialsData.id}`}>{trialsData.name}</a></p>
+	<a sveltekit:prefetch href={`./trials/${trialsData.id}`}><p class="name" >{trialsData.name}</p></a>
 	<p><span>🤒</span><span>Диагноз</span>{trialsData.condition.substring(0, 30)}</p>
 	<p><span>💊</span><span>Вмешательство</span>{trialsData.interventions.substring(0, 45)}</p>
 	<p><span>👩‍👩‍👦‍👦</span><span>Пациенты</span>{trialsData.numberOfPatients}</p>
@@ -17,6 +17,10 @@
 
 @use '../base';
 
+	a {
+		color: white;
+		text-decoration: none;
+	};
 	.name {
 		max-width: 200px;
 		background: base.$button;
@@ -24,10 +28,6 @@
 			background: base.$activatedButton;
 			cursor: pointer;
 		}
-		a {
-			color: white;
-			text-decoration: none;
-		};
 		@media (max-width: 840px) {
 			min-height: 60px;
 			min-width: 90%;

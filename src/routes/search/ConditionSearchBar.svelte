@@ -55,7 +55,7 @@
 		if (e.charCode == 13) {
 			e.preventDefault();
 			chosenElement = -1;
-			if (!searchButtonClicked) {
+			if (!searchButtonClicked && document.querySelectorAll(".focused").length > 0) {
 				searchTerm = document.querySelector(".focused").innerHTML;
 				searchButtonClicked = true;
 			} else {
@@ -158,10 +158,14 @@
 	}
 	input {
 		@include base.reset;
-		@include base.sizes($w: 320px, $h: 30px, $p: 4px, $m: 6px);
+		@include base.sizes($w: 260px, $h: 30px, $p: 4px, $m: 6px);
 		@include base.fonts($size: 16px);
 		border: 1px base.$lightGrey solid;
 		border-radius: 4px;
+		@media (max-width: base.$phone) {
+			width: auto;
+			min-width: 260px;
+		}
 	}
 	.focused {
 		background: base.$darkWhite !important;

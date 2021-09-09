@@ -12,6 +12,7 @@
 
 <script>
 
+	import { fly, fade } from 'svelte/transition'
 	import ConditionSearchBar from "./ConditionSearchBar.svelte"
 	import SearchResults from "./SearchResults.svelte"
 
@@ -30,18 +31,21 @@
 
 	function reassignSearchProps (e) {
 		spreadedProps.searchProps = e.detail.passedSearchTerm;
-		document.querySelector("main").style.transform = "scale(0.75)";
-		document.querySelector("h1").style.display = "none";
 	}
 
 </script>
 
-<main>
-	<h1>Поиск РКИ</h1>
-	<div class="searchWindow">
-	<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
-	</div>
-</main>
+{#await load}
+	<p>loading</p>
+{:then load} 
+	<main in:fly={{ y: 40, duration: 325 }} out:fade={{duration: 0}}>
+		<h1>Поиск РКИ</h1>
+		<div class="searchWindow">
+		<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
+		</div>
+	</main>
+{/await}
+
 
 <SearchResults {...spreadedProps}/>
 
@@ -64,6 +68,6 @@
 	}
 	.searchWindow {
 		border-radius: 16px;
-		box-shadow: rgba(100, 100, 111, 0.04) 0px 8px 24px 0px;
+		box-shadow: rgba(100, 100, 111, 0.14) 0px 8px 24px 0px;
 	}
 </style>
