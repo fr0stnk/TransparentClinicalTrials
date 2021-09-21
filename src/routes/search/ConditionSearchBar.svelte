@@ -11,61 +11,68 @@
 	export let searchButton = "Text";
 	export let searchButtonClicked = false;
 	export let chosenElement = -1;
+	$ :$searchTerms = searchPropsArray;
 
 	const dispatch = createEventDispatcher()
 
 	$ :visibleSearchTips = searchTips.filter((tip) => {
 		return tip.toLowerCase().includes(searchTerm.toLowerCase());
 	})
-	
-	function removeDiv (e) {
-    e.target.parentNode.remove();
+	function removeDiv (i) {
+		if ($searchTerms.length > -1) {
+			searchPropsArray.splice(i, 1);
+			$searchTerms = searchPropsArray;
+    		event.target.parentNode.remove();
+    	}
 	}
 	function chooseSearchTip (e) {
 		searchPropsArray.push(e.target.innerHTML);
 		searchPropsArray = searchPropsArray;
-		$searchTerms = searchPropsArray;
 		searchTerm = "";
 		searchButtonClicked = true;
+		// $searchTerms = searchPropsArray;
 	}
 	function defocusAndDeclick () {
 		document.querySelectorAll(".focused").forEach(item => item.classList.toggle("focused"));
 		searchButtonClicked = false;
 	}
 	function chooseSearchTipWithKeys (e) {
-    if (e.keyCode == 38) {
-        e.preventDefault()
-        chosenElement -= 1;
-        if (chosenElement < 0) {
-            chosenElement = -1;
-            document.querySelectorAll("#tipsButton")[0].classList.toggle("focused");
-            return;
-        } else {
-        document.querySelectorAll("#tipsButton")[chosenElement+1].classList.toggle("focused");
-        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-        }
-    }
-    if (e.keyCode == 40) {
-        e.preventDefault()
-        chosenElement += 1;
-        if (chosenElement == visibleSearchTips.length) {
-            chosenElement = 0;
-            document.querySelectorAll("#tipsButton")[visibleSearchTips.length-1].classList.toggle("focused");
-            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-        } else if (chosenElement == 0) {
-            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-        } else {
-        document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
-        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-        	}
-    	}
-	}
+	    if (e.keyCode == 38) {
+	        e.preventDefault()
+	        chosenElement -= 1;
+	        if (chosenElement < 0) {
+	            chosenElement = -1;
+	            document.querySelectorAll("#tipsButton")[0].classList.toggle("focused");
+	            return;
+	        } else {
+	        document.querySelectorAll("#tipsButton")[chosenElement+1].classList.toggle("focused");
+	        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+	        }
+	    }
+	    if (e.keyCode == 40) {
+	        e.preventDefault()
+	        chosenElement += 1;
+	        if (chosenElement == visibleSearchTips.length) {
+	            chosenElement = 0;
+	            document.querySelectorAll("#tipsButton")[visibleSearchTips.length-1].classList.toggle("focused");
+	            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+	        } else if (chosenElement == 0) {
+	            document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+	        } else {
+	        document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
+	        document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
+	        	}
+	    	}
+		}
 	function onKeyPress (e) {
 		if (e.charCode == 13) {
 			e.preventDefault();
 			chosenElement = -1;
 			if (!searchButtonClicked && document.querySelectorAll(".focused").length > 0) {
 				searchTerm = document.querySelector(".focused").innerHTML;
+				searchPropsArray.push(searchTerm);
+				searchPropsArray = searchPropsArray;
+				searchTerm = "";
 				searchButtonClicked = true;
 			} else {
 				passSearchTerm();
@@ -91,9 +98,9 @@
 		</p>
 		<div class="inputContainer">
 			<div class="searchArray">
-				{#each searchPropsArray as elem}
+				{#each searchPropsArray as elem, i}
 					<div transition:scale="{{duration: 200, delay: 0, opacity: 0.25, start: 0.25, easing: quintOut}}" class="searchArraySpan">{elem}
-						<div on:click={removeDiv} class="removeSearchArraySpan">
+						<div on:click={() => removeDiv(i)} class="removeSearchArraySpan">
 						</div>
 					</div>
 				{/each}
