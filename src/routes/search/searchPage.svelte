@@ -50,7 +50,7 @@
 		<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
 		<TagsSearchBar searchTags={searchTags} />
 		</div>
-		<button class="searchButton"><a href={`./${$searchTerms}`}>Искать</a></button>
+		<a href={`./${$searchTerms}`}><button class="searchButton">Искать</button></a>
 	</main>
 
 <style lang="scss">

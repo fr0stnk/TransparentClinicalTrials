@@ -15,7 +15,11 @@
 
 	const dispatch = createEventDispatcher()
 
-	$ :visibleSearchTips = searchTips.filter((tip) => {
+	$: uniqueSearchTips = searchTips.filter(function(item, pos) {
+		return searchTips.indexOf(item) == pos;
+	})
+
+	$ :visibleSearchTips = uniqueSearchTips.filter((tip) => {
 		return tip.toLowerCase().includes(searchTerm.toLowerCase());
 	})
 	function removeDiv (i) {
@@ -202,7 +206,7 @@
     }
     .searchArraySpan {
         @include base.flex($wrap: nowrap, $justify: flex-start);
-        max-height: 20px;
+        max-height: fit-content;
         padding: 4px;
         margin: 2px 2px 2px 2px;
         background: lightGrey;

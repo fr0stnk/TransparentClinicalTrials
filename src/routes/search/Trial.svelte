@@ -23,6 +23,8 @@
 	};
 	.name {
 		max-width: 200px;
+		min-width: 200px;
+		min-height: 40px;
 		background: base.$button;
 		&:hover {
 			background: base.$activatedButton;

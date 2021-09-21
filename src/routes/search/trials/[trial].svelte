@@ -25,6 +25,7 @@
 				<li><b>Название исследования:</b> <span class="valueOfListItem">{trialPage.name}</span></li>
 				<li><b>Диагноз:</b> <span class="valueOfListItem">{trialPage.condition}</span></li>
 				<li><b>Виды вмешательства:</b> <span class="valueOfListItem">{trialPage.interventions}</span></li>
+				<li><b>Статус:</b> <span class="valueOfListItem">{trialPage.status}</span></li>
 				<li><b>Дата начала:</b> <span class="valueOfListItem">{trialPage.start}</span></li>
 				<li><b>Дата окончания:</b> <span class="valueOfListItem">{trialPage.finish}</span></li>
 				<li><b>Организация, проводящая КИ:</b> <span class="valueOfListItem">{trialPage.organisations}</span></li>
@@ -77,6 +78,7 @@
 		background: base.$button;
 		color: base.$white;
 		border-radius: 12px;
+		max-width: 260px;
 		@media (max-width: 840px) {
 			min-width: 65%;
 		}
