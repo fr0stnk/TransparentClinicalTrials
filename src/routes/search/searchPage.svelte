@@ -50,10 +50,8 @@
 		<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
 		<TagsSearchBar searchTags={searchTags} />
 		</div>
-		<button><a href={`./${$searchTerms}`}>Search</a></button>
+		<button class="searchButton"><a href={`./${$searchTerms}`}>Искать</a></button>
 	</main>
-
-	<!-- <SearchResults {...spreadedProps}/> -->
 
 <style lang="scss">
 
@@ -72,5 +70,25 @@
 		border-radius: 16px;
 		max-width: 537px;
 		box-shadow: rgba(100, 100, 111, 0.14) 0px 8px 24px 0px;
+	}
+	.searchButton {
+		@include base.reset;
+		@include base.sizes($h: 40px, $p: 4px);
+		background: base.$button;
+		color: base.$white;
+		cursor: pointer;
+		min-width: 40px;
+		border-radius: 8px;
+		margin-top: 16px;
+		& a {
+			@include base.reset;
+			color: white;
+		}
+		@media (max-width: base.$phone) {
+			min-width: 100%;
+		}
+		&:hover {
+			background: base.$activatedButton;
+		}
 	}
 </style>
