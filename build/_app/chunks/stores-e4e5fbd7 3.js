@@ -1,1 +1,0 @@
-import{C as e}from"./vendor-bbfa0731.js";const s=e(localStorage.getItem(["searchTerms"])||[]);s.subscribe((e=>localStorage.setItem(["searchTerms"],e)));const t=e(localStorage.getItem("searchResultsFiltered")||"");t.subscribe((e=>localStorage.setItem("searchResultsFiltered",e)));export{t as a,s};

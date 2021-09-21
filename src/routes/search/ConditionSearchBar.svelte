@@ -155,25 +155,34 @@
 		padding: 4px 20px 20px 20px;
 	}
 	.searchBar {
-		@include base.flex($flow: column, $wrap: wrap);
-		align-items: flex-start;
+		@include base.flex($flow: column);
+		align-items: center;
 	}
 	.visibleSearchTipsContainer {
 		@include base.flex;
+		flex-flow: column;
 		position: sticky;
-		width: 360px;
-		max-height: 200px;
+		min-width: fit-content;
+		max-width: 240px;
+		max-height: fit-content;
 		background: base.$white;
 		box-shadow: rgba(100, 100, 110, 0.08) 0px 2px 29px 0px;
 		border-radius: 12px;
 		overflow: hidden;
 		overflow-y: scroll;
+		@media (max-width: base.$phone) {
+			max-width: 85%;
+		}
 		& button {
 			@include base.reset;
 			@include base.sizes($m: 4px, $p: 8px);
 			border-radius: 4px;
-			min-width: 340px;
-			text-align: left;
+			min-width: fit-content;
+			max-width: 360px;
+			text-align: center;
+			@media (max-width: base.$phone) {
+				min-width: fit-content;
+			}
 			&:hover {
 				background-color: base.$darkWhite;
 				cursor: pointer;
@@ -231,7 +240,7 @@
 		border: 1px base.$lightGrey solid;
 		border-radius: 10px;
         min-height: 30px;
-        min-width: 360px;
+        min-width: 260px;
         max-width: 360px;
 		@media (max-width: base.$phone) {
 			width: auto;
@@ -243,7 +252,6 @@
 		@include base.sizes($h: 30px, $p: 4px);
 		@include base.fonts($size: 16px);
 		min-width: 200px;
-		width: fit-content;
 		@media (max-width: base.$phone) {
 			width: auto;
 			min-width: 260px;

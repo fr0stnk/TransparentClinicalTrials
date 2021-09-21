@@ -55,6 +55,9 @@
 	.name {
 		max-width: 200px;
 		min-width: 200px;
+		@media (max-width: base.$phone) {
+			max-width: fit-content;
+		}
 	}
 	.tableTips {
 		@include base.fonts($family: sans-serif, $size: 12px, $weight: 800);

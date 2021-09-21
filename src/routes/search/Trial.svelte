@@ -24,7 +24,6 @@
 	.name {
 		max-width: 200px;
 		min-width: 200px;
-		min-height: 40px;
 		background: base.$button;
 		&:hover {
 			background: base.$activatedButton;
@@ -32,10 +31,10 @@
 		}
 		@media (max-width: 840px) {
 			min-height: 60px;
-			min-width: 90%;
+			min-width: 300px;
 		}
 		@media (max-width: 500px) {
-			min-width: 90%;
+			width: 90%;
 		}
 	}
 	.trial {

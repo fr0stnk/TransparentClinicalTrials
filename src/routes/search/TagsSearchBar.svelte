@@ -100,9 +100,10 @@ function onKeyPress (e) {
     .input {
         @include base.flex($justify: flex-start, $flow: row);
 		@include base.reset;
-        @include base.sizes($w: 360px, $h: 30px, $p: 2px, $m: 2px);
+        @include base.sizes($h: 30px, $p: 4px);
 		@include base.fonts($size: 16px);
         min-height: 20px;
+        min-width: 200px;
 		@media (max-width: base.$phone) {
 			width: auto;
 			min-width: 260px;
