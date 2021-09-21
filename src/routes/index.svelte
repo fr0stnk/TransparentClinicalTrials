@@ -10,7 +10,7 @@
 		</div>
 		<div class="role">
 			<div class="cube not-available">🏨</div>
-			<p>Я фармкомпания</p>
+			<p>Фармкомпания</p>
 		</div>
 	</div>
 </main>

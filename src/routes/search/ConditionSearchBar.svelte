@@ -1,9 +1,12 @@
 <script>
 
-	import { fly } from 'svelte/transition'
+	import { fly, scale } from 'svelte/transition'
+	import { quintOut } from 'svelte/easing'
 	import { createEventDispatcher } from 'svelte'
+	import { searchTerms } from '../../stores.js'
 
 	export let searchTips;
+	export let searchPropsArray = [];
 	export let searchTerm = "";
 	export let searchButton = "Text";
 	export let searchButtonClicked = false;
@@ -14,9 +17,15 @@
 	$ :visibleSearchTips = searchTips.filter((tip) => {
 		return tip.toLowerCase().includes(searchTerm.toLowerCase());
 	})
-
+	
+	function removeDiv (e) {
+    e.target.parentNode.remove();
+	}
 	function chooseSearchTip (e) {
-		searchTerm = e.target.innerHTML;
+		searchPropsArray.push(e.target.innerHTML);
+		searchPropsArray = searchPropsArray;
+		$searchTerms = searchPropsArray;
+		searchTerm = "";
 		searchButtonClicked = true;
 	}
 	function defocusAndDeclick () {
@@ -48,9 +57,9 @@
         } else {
         document.querySelectorAll("#tipsButton")[chosenElement-1].classList.toggle("focused");
         document.querySelectorAll("#tipsButton")[chosenElement].classList.toggle("focused");
-        }
-    }
-}
+        	}
+    	}
+	}
 	function onKeyPress (e) {
 		if (e.charCode == 13) {
 			e.preventDefault();
@@ -66,21 +75,45 @@
 	function passSearchTerm () {
 		searchButtonClicked = true;
 		dispatch("searchTermPassed", {
-			"passedSearchTerm": searchTerm,
+			"passedSearchTerm": searchPropsArray,
 		})
 	}
+
+	let focus = false;
 
 </script>
 
 <main>
 	
 	<div class="searchBar">
-		<p class="searchDescription">Здесь укажите название протокола или диагноз:</p>
-	<input autocomplete="off" placeholder="Введите запрос здесь" onfocus="placeholder=''" type="text" bind:value={searchTerm} on:keydown={chooseSearchTipWithKeys} on:keypress={onKeyPress} on:input={defocusAndDeclick}>
-	<button class="searchButton" on:click={passSearchTerm}>Искать</button>
+		<p class="searchDescription">
+			Здесь укажите название протокола или диагноз:
+		</p>
+		<div class="inputContainer">
+			<div class="searchArray">
+				{#each searchPropsArray as elem}
+					<div transition:scale="{{duration: 200, delay: 0, opacity: 0.25, start: 0.25, easing: quintOut}}" class="searchArraySpan">{elem}
+						<div on:click={removeDiv} class="removeSearchArraySpan">
+						</div>
+					</div>
+				{/each}
+			</div>
+			<input autocomplete="off" 
+			placeholder="Рак легких, рак мозга" 
+			onfocus="placeholder=''"
+			type="text" 
+			bind:value={searchTerm} 
+			on:keydown={chooseSearchTipWithKeys} 
+			on:keypress={onKeyPress} 
+			on:click={defocusAndDeclick} 
+			on:input={defocusAndDeclick} 
+			on:focus={() => {focus = true}} 
+			on:blur={() => {focus = false}}>
+		</div>
+	<!-- <button class="searchButton" on:click={passSearchTerm}>Искать</button> -->
 	</div>
 
-	{#if searchTerm.length && !searchButtonClicked}
+	{#if searchTerm.length && !searchButtonClicked && focus == true}
 		<div transition:fly={{ y: 20, duration: 125 }} class="visibleSearchTipsContainer">
 		{#each visibleSearchTips as tips}
 			<div class="visibleSearchTips">
@@ -111,20 +144,19 @@
 		padding: 4px 20px 20px 20px;
 	}
 	.searchBar {
-		@include base.flex($flow: column);
+		@include base.flex($flow: column, $wrap: wrap);
 		align-items: flex-start;
-		@media(max-width: base.$phone) {
-			flex-direction: column;
-		}
 	}
 	.visibleSearchTipsContainer {
 		@include base.flex;
-		position: absolute;
-		margin-top: 96px;
-		width: 380px;
+		position: sticky;
+		width: 360px;
+		max-height: 200px;
 		background: base.$white;
 		box-shadow: rgba(100, 100, 110, 0.08) 0px 2px 29px 0px;
 		border-radius: 12px;
+		overflow: hidden;
+		overflow-y: scroll;
 		& button {
 			@include base.reset;
 			@include base.sizes($m: 4px, $p: 8px);
@@ -139,12 +171,13 @@
 	}
 	.searchButton {
 		@include base.reset;
-		@include base.sizes($h: 40px, $m: 4px, $p: 4px);
+		@include base.sizes($h: 40px, $p: 4px);
 		background: base.$button;
 		color: base.$white;
 		cursor: pointer;
 		min-width: 40px;
 		border-radius: 4px;
+		margin-top: 16px;
 		@media (max-width: base.$phone) {
 			min-width: 100%;
 		}
@@ -155,13 +188,51 @@
 	.searchDescription {
 		@include base.fonts($size: 12px, $weight: 600);
 		color: base.$button;
+		padding: 8px;
+	}
+	.searchArray {
+        @include base.flex($wrap: wrap, $justify: flex-start);
+    }
+    .searchArraySpan {
+        @include base.flex($wrap: nowrap, $justify: flex-start);
+        max-height: 20px;
+        padding: 4px;
+        margin: 2px 2px 2px 2px;
+        background: lightGrey;
+        color: color;
+        border-radius: 6px;
+    }
+    .removeSearchArraySpan {
+        max-height: 10px;
+        font-size: 14px;
+        margin: 2px;
+        padding: 4px;
+        cursor: pointer;
+        border-radius: 4px;
+        background: darkgrey;
+        &:hover {
+            background: base.$darkWhite;
+        }
+    }
+	.inputContainer {
+        @include base.flex($justify: flex-start, $wrap: wrap, $flow: row);
+		@include base.sizes($p: 4px, $m: 6px);
+		border: 1px base.$lightGrey solid;
+		border-radius: 10px;
+        min-height: 30px;
+        min-width: 360px;
+        max-width: 360px;
+		@media (max-width: base.$phone) {
+			width: auto;
+			min-width: 260px;
+		}
 	}
 	input {
 		@include base.reset;
-		@include base.sizes($w: 260px, $h: 30px, $p: 4px, $m: 6px);
+		@include base.sizes($h: 30px, $p: 4px);
 		@include base.fonts($size: 16px);
-		border: 1px base.$lightGrey solid;
-		border-radius: 4px;
+		min-width: 200px;
+		width: fit-content;
 		@media (max-width: base.$phone) {
 			width: auto;
 			min-width: 260px;

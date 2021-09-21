@@ -39,20 +39,20 @@
 	.trial {
 		font-family: sans-serif;
 		font-size: 12px;
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: space-between;
+		@include base.flex($justify: space-between, $wrap: nowrap);
 		border-radius: 10px;
-		
+		background: base.$darkWhite;
 		margin: 15px;
 		padding: 15px;
 		max-width: 1440px;
 		@media (max-width:  840px) {
 			flex-wrap: wrap;
+			flex-flow: column;
 			max-width: 90%;
 			justify-content: center;
 		}
 		@media (max-width:  500px) {
+			flex-flow: wrap;
 			background: #fcfcfc;
 		}
 	}

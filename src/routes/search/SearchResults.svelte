@@ -2,10 +2,11 @@
 
 	import { fly, fade } from 'svelte/transition'
 	import Trial from "./Trial.svelte"
+	import { searchResultsFiltered } from "../../stores.js"
+	import { searchTerms } from "../../stores.js"
 	
-	export let searchProps = "-";
-	export let DB;
-	$ :databaseItems = DB.filter((item) => item.condition.toLowerCase().includes(searchProps.toLowerCase()))
+	let searchProps = $searchTerms;
+	let databaseItems = $searchResultsFiltered;
 
 </script>
 
@@ -21,11 +22,11 @@
 			<p><span>🏨</span>Организация</p>
 			<p><span>🏙</span>Город</p>
 		</div>
-	{#each databaseItems as trials}
-	<div class="trial">
-		<Trial trialsData={trials}/>
-	</div>
-	{/each}
+		{#each databaseItems as trials}
+		<div class="trial">
+			<Trial trialsData={trials}/>
+		</div>
+		{/each}
 	</div>
 	{:else}
 	<p class="tableTips">Ничего не найдено</p>
@@ -60,6 +61,7 @@
 		@include base.flex($wrap: nowrap, $justify: space-between);
 		border-radius: 10px;
 		margin: 15px;
+		padding: 15px;
 		flex-grow: 2;
 		@media (max-width: base.$tablet) {
 			display: none;
