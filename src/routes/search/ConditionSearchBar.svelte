@@ -121,7 +121,6 @@
 			on:focus={() => {focus = true}} 
 			on:blur={() => {focus = false}}>
 		</div>
-	<!-- <button class="searchButton" on:click={passSearchTerm}>Искать</button> -->
 	</div>
 
 	{#if searchTerm.length && !searchButtonClicked && focus == true}
