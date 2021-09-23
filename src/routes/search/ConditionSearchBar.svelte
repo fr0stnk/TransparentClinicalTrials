@@ -4,6 +4,7 @@
 	import { quintOut } from 'svelte/easing'
 	import { createEventDispatcher } from 'svelte'
 	import { searchTerms } from '../../stores.js'
+	import { searchTermInStore } from '../../stores.js'
 
 	export let searchTips;
 	export let searchPropsArray = [];
@@ -12,6 +13,7 @@
 	export let searchButtonClicked = false;
 	export let chosenElement = -1;
 	$ :$searchTerms = searchPropsArray;
+	$ :$searchTermInStore = searchTerm;
 
 	const dispatch = createEventDispatcher()
 
@@ -34,7 +36,6 @@
 		searchPropsArray = searchPropsArray;
 		searchTerm = "";
 		searchButtonClicked = true;
-		// $searchTerms = searchPropsArray;
 	}
 	function defocusAndDeclick () {
 		document.querySelectorAll(".focused").forEach(item => item.classList.toggle("focused"));
@@ -78,8 +79,14 @@
 				searchPropsArray = searchPropsArray;
 				searchTerm = "";
 				searchButtonClicked = true;
+			} else if (searchTerm != "") {
+				searchPropsArray.push(searchTerm);
+				searchPropsArray = searchPropsArray;
+				$searchTerms = searchPropsArray;
+				searchTerm = "";
+				console.log($searchTerms)
 			} else {
-				passSearchTerm();
+				document.location = `./${$searchTerms}`;
 			}
 		}
 	}

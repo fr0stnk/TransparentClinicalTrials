@@ -14,28 +14,56 @@
 import SearchResults from "./SearchResults.svelte";
 import { searchResultsFiltered } from "../../stores.js";
 import { searchTerms } from "../../stores.js";
+import { searchTermInStore } from "../../stores.js";
+console.log($searchTerms)
+console.log(typeof($searchTermInStore))
 
 export let DB;
 
 export let result = DB.filter(
 	(item) => {
-		return $searchTerms.some(
-			(i) => {
-				const condition = item.condition.toLowerCase();
-				const interventions = item.interventions.toLowerCase();
-				const city = item.city.toLowerCase();
-				const phase = item.phase.toLowerCase()
-				i = i.toLowerCase();
-				return (condition.includes(i) ||
-						city.includes(i) || 
-						interventions.includes(i) || 
-						phase.includes(i)
-				);
-			}
-		)
+		if (typeof($searchTerms) == "string") {
+			console.log($searchTerms)
+			let test = $searchTerms.split(",");
+			$searchTerms = test;
+				return $searchTerms.some(
+				(i) => {
+					const condition = item.condition.toLowerCase();
+					const interventions = item.interventions.toLowerCase();
+					const city = item.city.toLowerCase();
+					const phase = item.phase.toLowerCase()
+					i = i.toLowerCase();
+					return (condition.includes(i) ||
+							city.includes(i) || 
+							interventions.includes(i) || 
+							phase.includes(i)
+					);
+				}
+			)
+		} else {
+			return $searchTerms.some(
+				(i) => {
+					const condition = item.condition.toLowerCase();
+					const interventions = item.interventions.toLowerCase();
+					const city = item.city.toLowerCase();
+					const phase = item.phase.toLowerCase()
+					i = i.toLowerCase();
+					return (condition.includes(i) ||
+							city.includes(i) || 
+							interventions.includes(i) || 
+							phase.includes(i)
+					);
+				}
+			)
+		}
 	}
 )
+
+console.log(typeof(result))
+console.log(result)
+
 $searchResultsFiltered = result;
+
 
 </script>
 

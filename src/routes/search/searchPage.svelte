@@ -17,7 +17,7 @@
 	import SearchResults from './SearchResults.svelte'
 	import TagsSearchBar from './TagsSearchBar.svelte'
 	import { searchTerms } from '../../stores.js'
-
+	import { searchTermInStore } from '../../stores.js'
 //searchProps is the data that is passed from dispatched props of SearchBar and reassigned as soon as searchTermPassed
 
 	export let searchProps;
@@ -33,12 +33,15 @@
 		DB: DB,
 	}
 
-	function reassignSearchProps (e) {
-		spreadedProps.searchProps = e.detail.passedSearchTerm;
-	}
+	// function reassignSearchProps (e) {
+	// 	spreadedProps.searchProps = e.detail.passedSearchTerm;
+	// }
 
 	function passSearchProps () {
-		$searchTerms = searchPropsArray;
+		if ($searchTerms.length == 0) {
+			$searchTerms.push($searchTermInStore);
+			$searchTerms = $searchTerms;
+		}
 	}
 
 </script>
@@ -47,10 +50,10 @@
 	<main in:fly={{ y: 40, duration: 325 }} out:fade={{duration: 0}}>
 		<h1>Поиск РКИ</h1>
 		<div class="searchWindow">
-		<ConditionSearchBar searchTips={searchTips} on:searchTermPassed={reassignSearchProps} />
+		<ConditionSearchBar searchTips={searchTips} />
 		<TagsSearchBar searchTags={searchTags} />
 		</div>
-		<a href={`./${$searchTerms}`}><button class="searchButton">Искать</button></a>
+		<a href={`./${$searchTerms}`}><button on:mouseover={passSearchProps} class="searchButton">Искать</button></a>
 	</main>
 
 <style lang="scss">
