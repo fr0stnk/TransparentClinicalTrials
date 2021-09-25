@@ -2451,9 +2451,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-d3b7ab7a.js",
+      file: assets + "/_app/start-d7d60d84.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-d3b7ab7a.js", assets + "/_app/chunks/vendor-bbfa0731.js"]
+      js: [assets + "/_app/start-d7d60d84.js", assets + "/_app/chunks/vendor-bbfa0731.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2602,7 +2602,7 @@ var module_lookup = {
     return _searchResultsPage_;
   })
 };
-var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-a081fd24.js", "css": ["assets/pages/__layout.svelte-7045ab79.css"], "js": ["pages/__layout.svelte-a081fd24.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-511f715f.js", "css": [], "js": ["error.svelte-511f715f.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-0ef45d68.js", "css": ["assets/pages/index.svelte-19935c43.css"], "js": ["pages/index.svelte-0ef45d68.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/__layout.svelte": { "entry": "pages/search/__layout.svelte-71731c9b.js", "css": ["assets/pages/search/__layout.svelte-f8a06f0d.css"], "js": ["pages/search/__layout.svelte-71731c9b.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/ConditionSearchBar.svelte": { "entry": "pages/search/ConditionSearchBar.svelte-92ff3695.js", "css": ["assets/pages/search/ConditionSearchBar.svelte-1b26f81d.css"], "js": ["pages/search/ConditionSearchBar.svelte-92ff3695.js", "chunks/vendor-bbfa0731.js", "chunks/stores-465030c8.js"], "styles": [] }, "src/routes/search/SearchResults.svelte": { "entry": "pages/search/SearchResults.svelte-a032fde1.js", "css": ["assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css", "assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css"], "js": ["pages/search/SearchResults.svelte-a032fde1.js", "chunks/vendor-bbfa0731.js", "pages/search/Trial.svelte-6713f0db.js", "chunks/stores-465030c8.js"], "styles": [] }, "src/routes/search/TagsSearchBar.svelte": { "entry": "pages/search/TagsSearchBar.svelte-89b05f8e.js", "css": ["assets/pages/search/TagsSearchBar.svelte-649e8dcd.css"], "js": ["pages/search/TagsSearchBar.svelte-89b05f8e.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/searchPage.svelte": { "entry": "pages/search/searchPage.svelte-4e3fa3b4.js", "css": ["assets/pages/search/searchPage.svelte-44ab650a.css", "assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css", "assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css", "assets/pages/search/ConditionSearchBar.svelte-1b26f81d.css", "assets/pages/search/TagsSearchBar.svelte-649e8dcd.css"], "js": ["pages/search/searchPage.svelte-4e3fa3b4.js", "chunks/vendor-bbfa0731.js", "pages/search/ConditionSearchBar.svelte-92ff3695.js", "chunks/stores-465030c8.js", "pages/search/TagsSearchBar.svelte-89b05f8e.js"], "styles": [] }, "src/routes/search/trials/[trial].svelte": { "entry": "pages/search/trials/[trial].svelte-3e25f5c8.js", "css": ["assets/pages/search/trials/[trial].svelte-354375eb.css"], "js": ["pages/search/trials/[trial].svelte-3e25f5c8.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/Trial.svelte": { "entry": "pages/search/Trial.svelte-6713f0db.js", "css": ["assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css"], "js": ["pages/search/Trial.svelte-6713f0db.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/[searchResultsPage].svelte": { "entry": "pages/search/[searchResultsPage].svelte-b2e96d94.js", "css": ["assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css", "assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css"], "js": ["pages/search/[searchResultsPage].svelte-b2e96d94.js", "chunks/vendor-bbfa0731.js", "pages/search/SearchResults.svelte-a032fde1.js", "pages/search/Trial.svelte-6713f0db.js", "chunks/stores-465030c8.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-a081fd24.js", "css": ["assets/pages/__layout.svelte-7045ab79.css"], "js": ["pages/__layout.svelte-a081fd24.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-511f715f.js", "css": [], "js": ["error.svelte-511f715f.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-0ef45d68.js", "css": ["assets/pages/index.svelte-19935c43.css"], "js": ["pages/index.svelte-0ef45d68.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/__layout.svelte": { "entry": "pages/search/__layout.svelte-71731c9b.js", "css": ["assets/pages/search/__layout.svelte-f8a06f0d.css"], "js": ["pages/search/__layout.svelte-71731c9b.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/ConditionSearchBar.svelte": { "entry": "pages/search/ConditionSearchBar.svelte-92ff3695.js", "css": ["assets/pages/search/ConditionSearchBar.svelte-1b26f81d.css"], "js": ["pages/search/ConditionSearchBar.svelte-92ff3695.js", "chunks/vendor-bbfa0731.js", "chunks/stores-465030c8.js"], "styles": [] }, "src/routes/search/SearchResults.svelte": { "entry": "pages/search/SearchResults.svelte-a032fde1.js", "css": ["assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css", "assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css"], "js": ["pages/search/SearchResults.svelte-a032fde1.js", "chunks/vendor-bbfa0731.js", "pages/search/Trial.svelte-6713f0db.js", "chunks/stores-465030c8.js"], "styles": [] }, "src/routes/search/TagsSearchBar.svelte": { "entry": "pages/search/TagsSearchBar.svelte-89b05f8e.js", "css": ["assets/pages/search/TagsSearchBar.svelte-649e8dcd.css"], "js": ["pages/search/TagsSearchBar.svelte-89b05f8e.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/searchPage.svelte": { "entry": "pages/search/searchPage.svelte-4e3fa3b4.js", "css": ["assets/pages/search/searchPage.svelte-44ab650a.css", "assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css", "assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css", "assets/pages/search/ConditionSearchBar.svelte-1b26f81d.css", "assets/pages/search/TagsSearchBar.svelte-649e8dcd.css"], "js": ["pages/search/searchPage.svelte-4e3fa3b4.js", "chunks/vendor-bbfa0731.js", "pages/search/ConditionSearchBar.svelte-92ff3695.js", "chunks/stores-465030c8.js", "pages/search/TagsSearchBar.svelte-89b05f8e.js"], "styles": [] }, "src/routes/search/trials/[trial].svelte": { "entry": "pages/search/trials/[trial].svelte-3e25f5c8.js", "css": ["assets/pages/search/trials/[trial].svelte-354375eb.css"], "js": ["pages/search/trials/[trial].svelte-3e25f5c8.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/Trial.svelte": { "entry": "pages/search/Trial.svelte-6713f0db.js", "css": ["assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css"], "js": ["pages/search/Trial.svelte-6713f0db.js", "chunks/vendor-bbfa0731.js"], "styles": [] }, "src/routes/search/[searchResultsPage].svelte": { "entry": "pages/search/[searchResultsPage].svelte-54f7967d.js", "css": ["assets/Trial.svelte_svelte&type=style&lang-6ad8cca2.css", "assets/SearchResults.svelte_svelte&type=style&lang-878887c3.css"], "js": ["pages/search/[searchResultsPage].svelte-54f7967d.js", "chunks/vendor-bbfa0731.js", "pages/search/SearchResults.svelte-a032fde1.js", "pages/search/Trial.svelte-6713f0db.js", "chunks/stores-465030c8.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2993,16 +2993,11 @@ var load = async ({ fetch: fetch2 }) => {
 var U5BsearchResultsPageu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $searchResultsFiltered, $$unsubscribe_searchResultsFiltered;
   let $searchTerms, $$unsubscribe_searchTerms;
-  let $searchTermInStore, $$unsubscribe_searchTermInStore;
   $$unsubscribe_searchResultsFiltered = subscribe(searchResultsFiltered, (value) => $searchResultsFiltered = value);
   $$unsubscribe_searchTerms = subscribe(searchTerms, (value) => $searchTerms = value);
-  $$unsubscribe_searchTermInStore = subscribe(searchTermInStore, (value) => $searchTermInStore = value);
-  console.log($searchTerms);
-  console.log(typeof $searchTermInStore);
   let { DB } = $$props;
   let { result = DB.filter((item) => {
     if (typeof $searchTerms == "string") {
-      console.log($searchTerms);
       let test = $searchTerms.split(",");
       set_store_value(searchTerms, $searchTerms = test, $searchTerms);
       return $searchTerms.some((i) => {
@@ -3024,8 +3019,6 @@ var U5BsearchResultsPageu5D = create_ssr_component(($$result, $$props, $$binding
       });
     }
   }) } = $$props;
-  console.log(typeof result);
-  console.log(result);
   set_store_value(searchResultsFiltered, $searchResultsFiltered = result, $searchResultsFiltered);
   if ($$props.DB === void 0 && $$bindings.DB && DB !== void 0)
     $$bindings.DB(DB);
@@ -3033,7 +3026,6 @@ var U5BsearchResultsPageu5D = create_ssr_component(($$result, $$props, $$binding
     $$bindings.result(result);
   $$unsubscribe_searchResultsFiltered();
   $$unsubscribe_searchTerms();
-  $$unsubscribe_searchTermInStore();
   return `${validate_component(SearchResults, "SearchResults").$$render($$result, {}, {}, {})}`;
 });
 var _searchResultsPage_ = /* @__PURE__ */ Object.freeze({

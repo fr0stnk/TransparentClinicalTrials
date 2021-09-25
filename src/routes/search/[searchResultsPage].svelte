@@ -11,19 +11,17 @@
 </script>
 
 <script>
+	
 import SearchResults from "./SearchResults.svelte";
 import { searchResultsFiltered } from "../../stores.js";
 import { searchTerms } from "../../stores.js";
 import { searchTermInStore } from "../../stores.js";
-console.log($searchTerms)
-console.log(typeof($searchTermInStore))
 
 export let DB;
 
 export let result = DB.filter(
 	(item) => {
 		if (typeof($searchTerms) == "string") {
-			console.log($searchTerms)
 			let test = $searchTerms.split(",");
 			$searchTerms = test;
 				return $searchTerms.some(
@@ -59,8 +57,6 @@ export let result = DB.filter(
 	}
 )
 
-console.log(typeof(result))
-console.log(result)
 
 $searchResultsFiltered = result;
 

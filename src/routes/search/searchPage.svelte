@@ -18,7 +18,6 @@
 	import TagsSearchBar from './TagsSearchBar.svelte'
 	import { searchTerms } from '../../stores.js'
 	import { searchTermInStore } from '../../stores.js'
-//searchProps is the data that is passed from dispatched props of SearchBar and reassigned as soon as searchTermPassed
 
 	export let searchProps;
 	export let DB;
@@ -32,10 +31,6 @@
 		searchProps: searchProps,
 		DB: DB,
 	}
-
-	// function reassignSearchProps (e) {
-	// 	spreadedProps.searchProps = e.detail.passedSearchTerm;
-	// }
 
 	function passSearchProps () {
 		if ($searchTerms.length == 0) {

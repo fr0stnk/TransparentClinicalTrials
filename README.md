@@ -19,7 +19,7 @@ This one is a build made to be hosted by Netlify. It is full-fledged application
 
 ### Node project
 
-To make it a node-project. You have to change **svelte.config.js**.
+To make it work as a node-project. You have to change **svelte.config.js**.
 
 	
 	import adapter from '@sveltejs/adapter-node';
